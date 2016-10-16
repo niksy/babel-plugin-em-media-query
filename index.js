@@ -63,18 +63,14 @@ module.exports = ( opts ) => {
 		return getParent(parent);
 	}
 
-	const updateMediaQuery = {
-		StringLiteral: ( path, state ) => {
-			path.node.value = transform(path.node.value, state.opts);
-		}
-	};
-
 	return {
 		visitor: {
 			Identifier: ( path, state ) => {
 				if ( t.isIdentifier(path.node, { name: 'matchMedia' }) ) {
 					const parent = getParent(path);
-					parent.traverse(updateMediaQuery, state);
+					parent.node.arguments.forEach(( arg ) => {
+						arg.value = transform(arg.value, state.opts);
+					});
 				}
 			}
 		}
