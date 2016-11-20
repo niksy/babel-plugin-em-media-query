@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-em-media-query",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Babel plugin for transforming min/max-width/height media queries to ems.",
   "main": "index.js",
   "author": "Ivan Nikolić <niksy5@gmail.com> (http://ivannikolic.com)",
