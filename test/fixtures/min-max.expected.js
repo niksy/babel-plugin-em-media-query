@@ -9,3 +9,6 @@ window.matchMedia('screen and (min-height:100vh) and (max-height:100%)');
 
 global.matchMedia('screen and (min-width:37.5em) and (max-width:46.1875em)');
 matchMedia('screen and (min-width:37.5em) and (max-width:46.1875em)');
+
+window.matchMedia('screen and (min-width:37.5em) and (max-width:46.1875em)');
+window.matchMedia(`screen and (min-width:${ 600 }px) and (max-width:${ 739 }px)`);

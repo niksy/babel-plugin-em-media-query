@@ -1,8 +1,10 @@
-var assert = require('assert');
-var fs = require('fs');
-var pify = require('pify');
-var babel = require('babel-core');
-var fn = require('../');
+'use strict';
+
+const assert = require('assert');
+const fs = require('fs');
+const pify = require('pify');
+const babel = require('babel-core');
+const fn = require('../');
 
 function runTest ( testCase, opts ) {
 	return Promise.all([
@@ -38,4 +40,8 @@ it('screen and (min-{width/height}:{value}) and (max-{width/height}:{value})', f
 
 it('precision: 3', function () {
 	return runTest('precision', { precision: 3 });
+});
+
+it('vars', function () {
+	return runTest('vars', {});
 });

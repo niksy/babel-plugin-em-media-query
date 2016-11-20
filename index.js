@@ -1,56 +1,6 @@
 'use strict';
 
-const round = require('lodash/round');
-const parse = require('postcss-value-parser');
-
-/**
- * @param  {String} str  [description]
- * @param  {Object} opts
- *
- * @return {String}
- */
-function transform ( str, opts ) {
-
-	opts = Object.assign({
-		precision: 5
-	}, opts);
-
-	const ast = parse(str);
-
-	ast.walk(( node ) => {
-
-		if ( node.type === 'function' ) {
-
-			const values = node.nodes;
-			const minMax = values.some(( item ) => {
-				return /(?:min|max)\-(?:width|height)/.test(item.value);
-			});
-
-			// If we are working with min/max-width/height query
-			if ( minMax ) {
-				values
-
-					// Work only with pixel values
-					.filter(( item ) => {
-						const value = parse.unit(item.value);
-						return item.type === 'word' && (value && value.unit === 'px');
-					})
-
-					// Convert to ems
-					.map(( item ) => {
-						const value = parse.unit(item.value);
-						item.value = [round(Number(value.number)/16, opts.precision), 'em'].join('');
-						return item;
-					});
-			}
-
-		}
-
-	});
-
-	return ast.toString();
-
-}
+const emMediaQuery = require('em-media-query');
 
 module.exports = ( opts ) => {
 	const t = opts.types;
@@ -68,8 +18,13 @@ module.exports = ( opts ) => {
 			Identifier: ( path, state ) => {
 				if ( t.isIdentifier(path.node, { name: 'matchMedia' }) ) {
 					const parent = getParent(path);
-					parent.node.arguments.forEach(( arg ) => {
-						arg.value = transform(arg.value, state.opts);
+					parent.node.arguments = parent.node.arguments.map(( arg ) => {
+						if ( t.isStringLiteral(arg) ) {
+							return t.stringLiteral(emMediaQuery(arg.value, state.opts));
+						} else if ( t.isTemplateLiteral(arg) && arg.quasis.length === 1 ) {
+							return t.stringLiteral(emMediaQuery(arg.quasis[0].value.raw, state.opts));
+						}
+						return arg;
 					});
 				}
 			}

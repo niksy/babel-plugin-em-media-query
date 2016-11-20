@@ -12,8 +12,7 @@
     "test": "eslint '{index,test/*}.js' && istanbul cover _mocha 'test/*.js' && istanbul check-coverage"
   },
   "dependencies": {
-    "lodash": "^4.16.4",
-    "postcss-value-parser": "^3.3.0"
+    "em-media-query": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.17.0",
