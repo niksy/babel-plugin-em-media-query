@@ -56,5 +56,5 @@ Rounding precision for values.
 MIT © [Ivan Nikolić](http://ivannikolic.com)
 
 [ci]: https://travis-ci.org/niksy/babel-plugin-em-media-query
-[ci-img]: https://img.shields.io/travis/niksy/babel-plugin-em-media-query.svg
+[ci-img]: https://travis-ci.org/niksy/babel-plugin-em-media-query.svg?branch=master
 [babel-plugins]: http://babeljs.io/docs/plugins/
