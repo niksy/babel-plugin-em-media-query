@@ -18,30 +18,34 @@ function runTest ( testCase, opts ) {
 		});
 }
 
-it('screen and (min-{width/height}:{value})', function () {
+it('should process "screen and (min-{width/height}:{value})"', function () {
 	return runTest('min', {});
 });
 
-it('screen and (max-{width/height}:{value})', function () {
+it('should process "screen and (max-{width/height}:{value})"', function () {
 	return runTest('max', {});
 });
 
-it('screen and (min-{width/height}:{value}), screen and (min-{width/height}:{value})', function () {
+it('should process "screen and (min-{width/height}:{value}), screen and (min-{width/height}:{value})"', function () {
 	return runTest('min-multiple', {});
 });
 
-it('(min-{width/height}:{value}), screen and (min-{width/height}:{value}) / screen and (min-{width/height}:{value}), (min-{width/height}:{value})', function () {
+it('should process "(min-{width/height}:{value}), screen and (min-{width/height}:{value}) / screen and (min-{width/height}:{value}), (min-{width/height}:{value})"', function () {
 	return runTest('min-combination', {});
 });
 
-it('screen and (min-{width/height}:{value}) and (max-{width/height}:{value})', function () {
+it('should process "screen and (min-{width/height}:{value}) and (max-{width/height}:{value})"', function () {
 	return runTest('min-max', {});
 });
 
-it('precision: 3', function () {
+it('should process options "precision: 3"', function () {
 	return runTest('precision', { precision: 3 });
 });
 
-it('vars', function () {
+it('should not process variables', function () {
 	return runTest('vars', {});
+});
+
+it('should process media query comments', function () {
+	return runTest('comments', {});
 });

@@ -4,8 +4,6 @@
 
 Babel plugin for transforming min/max-width/height media queries to ems.
 
-Works for [`matchMedia`][matchmedia] calls.
-
 ## Install
 
 ```sh
@@ -31,11 +29,17 @@ Then, in your code:
 ```js
 /* Before */
 
+// Standard matchMedia call
 window.matchMedia('screen and (min-width:600px) and (max-width:739px)');
+
+// Special leading comment before string or template literal
+const jackie = /* @media */ 'screen and (min-width:600px)';
 
 /* After */
 
 window.matchMedia('screen and (min-width:37.5em) and (max-width:46.1875em)');
+
+const jackie = 'screen and (min-width:37.5em)';
 ```
 
 ## Options
@@ -54,4 +58,3 @@ MIT © [Ivan Nikolić](http://ivannikolic.com)
 [ci]: https://travis-ci.org/niksy/babel-plugin-em-media-query
 [ci-img]: https://img.shields.io/travis/niksy/babel-plugin-em-media-query.svg
 [babel-plugins]: http://babeljs.io/docs/plugins/
-[matchmedia]: https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia
