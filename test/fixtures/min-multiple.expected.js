@@ -11,4 +11,4 @@ global.matchMedia('screen and (min-width:37.5em), screen and (min-width:46.1875e
 matchMedia('screen and (min-width:37.5em), screen and (min-width:46.1875em)');
 
 window.matchMedia('screen and (min-width:37.5em), screen and (min-width:46.1875em)');
-window.matchMedia(`screen and (min-width:${ 600 }px), screen and (min-width:${ 739 }px)`);
+window.matchMedia(`screen and (min-width:${600}px), screen and (min-width:${739}px)`);
